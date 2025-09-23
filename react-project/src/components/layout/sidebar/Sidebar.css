@@ -10,6 +10,7 @@
      top: 0;
      left: 0;
      z-index: 1000;
+     transition: all .3s ease-in-out;
 }
 .link-navbar:hover{
      color: burlywood !important;
@@ -18,6 +19,9 @@
 @media screen and (max-width: 768px) {
      #sidebar{
           left: -280px;
+     }
+     #sidebar-toggle:checked ~ #sidebar{
+          left: 0;
      }
      
 }

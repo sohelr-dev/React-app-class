@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom'
 function Sidebar() {
   return (
     <>
-      <div id='sidebar'>
+    <div className="text-end">
+      
+    </div>
+      <div id='sidebar' className='' >
         <h4 className='text-center'>SOHEL ADMIN</h4>
         <div className="text-center mb-4">
           <img src={Profile} width={80} height={80} className='rounded-circle'/>
