@@ -1,9 +1,14 @@
+import { NavLink } from "react-router-dom"
+
+
+
 
 function Sidebar() {
   return (
     <>
-    <input type="checkbox" name="" id="sidebarMenu" className="d-none" />
-    <label htmlFor="sidebarMenu" className="bg-layer"></label>
+    
+      <input type="checkbox" name="" id="sidebarMenu" className="d-none" />
+      <label htmlFor="sidebarMenu" className="bg-layer"></label>
       <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme">
         <div className="app-brand demo">
           <a href="index.html" className="app-brand-link">
@@ -20,16 +25,46 @@ function Sidebar() {
 
         <ul className="menu-inner py-1">
           {/* Dashboard */}
-          <li className="menu-item active">
-            <a href="index.html" className="menu-link">
-              <i className="menu-icon tf-icons bx bx-home-circle"></i>
-              <div data-i18n="Analytics">Dashboard</div>
-            </a>
+          <NavLink to="/dashboard" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
+          <li className="menu-link">
+            <i className="menu-icon tf-icons bx bx-home-circle"></i>
+            <div data-i18n="Analytics">Dashboard</div>
           </li>
+          </NavLink>
+          <NavLink to="/pos" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
+          <li className="menu-link">
+            <i className="menu-icon tf-icons bx bx-detail"></i>
+            <div data-i18n="Analytics">Pos</div>
+          </li>
+          </NavLink>
+          <NavLink to="/products" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
+          <li className="menu-link">
+            <i className="menu-icon tf-icons bx bx-home-circle"></i>
+            <div data-i18n="Analytics">Products</div>
+          </li>
+          </NavLink>
+          <NavLink to="/users" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
+          <li className="menu-link">
+            <i className="menu-icon tf-icons bx bx-user"></i>
+            <div data-i18n="Analytics">Users</div>
+          </li>
+          </NavLink>
+          <NavLink to="/roles" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
+          <li className="menu-link">
+            <i className="menu-icon tf-icons bx bx-user"></i>
+            <div data-i18n="Analytics">Roles</div>
+          </li>
+          </NavLink>
+          <NavLink to="/sales" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
+          <li className="menu-link">
+            <i className="menu-icon tf-icons bx bx-dock-top"></i>
+            <div data-i18n="Analytics">Sales</div>
+          </li>
+          </NavLink>
 
           {/* Layouts */}
           <li className="menu-item">
-            <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <a className="menu-link menu-toggle">
               <i className="menu-icon tf-icons bx bx-layout"></i>
               <div data-i18n="Layouts">Layouts</div>
             </a>
