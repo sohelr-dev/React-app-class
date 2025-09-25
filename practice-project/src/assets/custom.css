@@ -17,3 +17,19 @@
           z-index: 1090;
      }
 }
+.menu-sub{
+     display: block !important;
+     transition: all .3s ease-in-out !important;
+}
+.menu-sub.open{
+     min-height: 500px;
+     opacity: 1;
+     pointer-events: auto;
+     visibility: visible;
+}
+.menu-sub.closed{
+     min-height: 0;
+     opacity: 0;
+     pointer-events: none;
+     visibility: hidden;
+}
