@@ -31,6 +31,12 @@ function Sidebar() {
             <div data-i18n="Analytics">Dashboard</div>
           </li>
           </NavLink>
+          <NavLink to="/posts" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
+          <li className="menu-link">
+            <i className="menu-icon tf-icons bx bx-dock-top"></i>
+            <div data-i18n="Analytics">Manage Posts</div>
+          </li>
+          </NavLink>
           <NavLink to="/pos" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
           <li className="menu-link">
             <i className="menu-icon tf-icons bx bx-detail"></i>
@@ -61,6 +67,7 @@ function Sidebar() {
             <div data-i18n="Analytics">Sales</div>
           </li>
           </NavLink>
+          
 
           {/* Layouts */}
           <li className="menu-item">

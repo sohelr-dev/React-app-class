@@ -10,6 +10,8 @@ import Layout from './components/layout/Layout.tsx';
 import Navbar from './components/layout/Navbar.tsx';
 import Dashboard from './components/pages/Dashboard.tsx';
 import Products from './components/pages/Products.tsx';
+import ManagePost from './components/pages/post/ManagePost.tsx';
+import CreatePost from './components/pages/post/CreatePost.tsx';
 
 const PractiseApp = createBrowserRouter([
   {
@@ -21,6 +23,8 @@ const PractiseApp = createBrowserRouter([
       {path: '/sales', element:<h1>Sales</h1>},
       {path: '/users', element:<h1>Users</h1>},
       {path: '/roles', element:<h1>Roles</h1>},
+      {path: '/posts', element:<ManagePost/>},
+      {path: '/post/create', element:<CreatePost/>},
     ]
   },
   {path: '/pos', element:<h1>Pos</h1>},
