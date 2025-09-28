@@ -46,7 +46,7 @@ function ManagePost() {
      function getData(){
           axios.get("https://jsonplaceholder.typicode.com/posts")
           .then((response)=>{
-               console.log(response);
+               // console.log(response);
                setPosts(response.data)
           })
           .catch((error)=>{
@@ -81,9 +81,12 @@ function ManagePost() {
                                                             <td>{item.body}</td>
                                                             <th>
                                                                  <div className="d-flex gap-2">
-                                                                      <button type="button" className="btn btn-icon btn-outline-primary">
+                                                                      <Link to={`/post/${item.id}`} type="button" className="btn btn-icon btn-outline-primary">
+                                                                           <span className="tf-icons bx bx-detail"></span>
+                                                                      </Link>
+                                                                      <Link to={`/post/edit/${item.id}`} type="button" className="btn btn-icon btn-outline-primary">
                                                                            <span className="tf-icons bx bx-edit"></span>
-                                                                      </button>
+                                                                      </Link>
                                                                       <button type="button" className="btn btn-icon btn-outline-primary">
                                                                            <span className="tf-icons bx bx-trash"></span>
                                                                       </button>

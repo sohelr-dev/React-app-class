@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 
@@ -9,9 +10,30 @@ function CreatePost() {
      useEffect(() => {
           document.title = "Post Create";
      });
-     function postData(){
-          alert("Data Submit SuccessFull");
+     function postData(e:React.FormEvent){
+          e.preventDefault();
+          // alert("Data Submit SuccessFull");
+          // console.log(title);
+          // console.log(body);
+          
+          const data ={title,body};
+          axios.post("https://jsonplaceholder.typicode.com/posts",data)
+          .then((response)=>{
+               console.log(response.data);
+               // console.log(response);
+               setTitle("");
+               setBody("");
+               alert("Data Save SuccessFull ! \n " + "ID No : " + response.data.id);
+
+          })
+          .catch((error)=>{
+               console.log(error);
+          })
      }
+     // useEffect(()=>{
+     //      console.log("Tilte:" + title);
+     //      console.log("Body:" + body);
+     // },[title,body]);
      return (
           <>
                <div className="container-xxl flex-grow-1 container-p-y">
@@ -22,11 +44,11 @@ function CreatePost() {
                                    <form onSubmit={postData}>
                                         <div className="mb-3">
                                              <label className="form-label">Title</label>
-                                             <input type="text" name="title" className="form-control" />
+                                             <input type="text" name="title" value={title} className="form-control" onChange={((e)=>setTitle(e.target.value))} />
                                         </div>
                                         <div className="mb-3">
                                              <label  className="form-label">Body</label>
-                                             <textarea name="body" className="form-control" rows={4}></textarea>
+                                             <textarea name="body" className="form-control" value={body} rows={4} onChange={((e)=>setBody(e.target.value))}></textarea>
                                         </div>
                                         <button type="submit" className="btn btn-outline-primary">Submit</button>
                                    </form>
