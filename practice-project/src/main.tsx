@@ -14,6 +14,7 @@ import ManagePost from './components/pages/post/ManagePost.tsx';
 import CreatePost from './components/pages/post/CreatePost.tsx';
 import DetailsPost from './components/pages/post/DetailsPost.tsx';
 import EditPost from './components/pages/post/EditPost.tsx';
+import ManageRoles from './components/pages/roles/ManageRoles.tsx';
 
 const PractiseApp = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const PractiseApp = createBrowserRouter([
       {path: '/products', element:<Products/>},
       {path: '/sales', element:<h1>Sales</h1>},
       {path: '/users', element:<h1>Users</h1>},
-      {path: '/roles', element:<h1>Roles</h1>},
+      {path: '/roles', element:<ManageRoles/>},
       {path: '/posts', element:<ManagePost/>},
       {path: '/post/create', element:<CreatePost/>},
       {path: '/post/:id', element:<DetailsPost/>},

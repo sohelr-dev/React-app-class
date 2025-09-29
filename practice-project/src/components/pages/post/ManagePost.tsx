@@ -52,6 +52,18 @@ function ManagePost() {
           .catch((error)=>{
                console.log(error);
           })
+
+     }
+     const handleDelete =(id:number)=>{
+          // console.log(id + "Confirm Delete");
+          axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
+          .then((resp)=>{
+               console.log(resp);
+          })
+          .catch((error)=>{
+               console.log(error);
+          })
+
      }
      return (
           <>
@@ -87,7 +99,7 @@ function ManagePost() {
                                                                       <Link to={`/post/edit/${item.id}`} type="button" className="btn btn-icon btn-outline-primary">
                                                                            <span className="tf-icons bx bx-edit"></span>
                                                                       </Link>
-                                                                      <button type="button" className="btn btn-icon btn-outline-primary">
+                                                                      <button type="button" onClick={()=>{confirm("Are You Sure Delete This Item ?") && handleDelete(item.id)}}  className="btn btn-icon btn-outline-primary">
                                                                            <span className="tf-icons bx bx-trash"></span>
                                                                       </button>
                                                                  </div>

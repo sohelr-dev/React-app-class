@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 
 
 function EditPost() {
-     const [post,setPost] = useState({
+     const [postItem,setPost] = useState({
           title:"",
           body:""
      });
@@ -35,7 +35,12 @@ function EditPost() {
 
      const handleSubmit=(e:React.FormEvent)=>{
           e.preventDefault();
-          console.log(post);
+          // console.log(post);
+          axios.put(`https://jsonplaceholder.typicode.com/posts/${paramId}`,postItem)
+          .then((res)=>{
+               console.log(res.data);
+               alert("Update SuccessFull");
+          })
      }
 
 
@@ -49,11 +54,11 @@ function EditPost() {
                                    <form onSubmit={handleSubmit}>
                                         <div className="mb-3">
                                              <label className="form-label">Title</label>
-                                             <input type="text" name="title" value={post.title} className="form-control" onChange={(e)=>setPost({...post,title: e.target.value})} />
+                                             <input type="text" name="title" value={postItem.title} className="form-control" onChange={(e)=>setPost({...postItem,title: e.target.value})} />
                                         </div>
                                         <div className="mb-3">
                                              <label  className="form-label">Body</label>
-                                             <textarea name="body" className="form-control" value={post.body} rows={4} onChange={(e)=>setPost({...post,body: e.target.value})}></textarea>
+                                             <textarea name="body" className="form-control" value={postItem.body} rows={4} onChange={(e)=>setPost({...postItem,body: e.target.value})}></textarea>
                                         </div>
                                         <button type="submit" className="btn btn-outline-primary">Update</button>
                                    </form>
