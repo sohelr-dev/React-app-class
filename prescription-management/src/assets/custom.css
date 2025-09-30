@@ -7,6 +7,16 @@
      }
      
 }
+
+/* dashboard card hover */
+.card-hover {
+  transition: all 0.3s ease-in-out;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(25, 0, 0, 0.1);
+}
+
 /* 404 page  */
 
 .pageNotFound{
@@ -24,6 +34,3 @@
      font-weight: bolder;
      font-size: 8rem;
 }
-
-/* login  */
-

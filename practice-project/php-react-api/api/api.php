@@ -2,13 +2,10 @@
 // echo "API Working <br>";
 require_once('../config/db.php');
 header('Access-Control-Allow-Origin: http://localhost:5174');
-// require_once('../config/base.php');
-// require_once('../models/products.class.php');
-// include_once('product-api.php');
+
 foreach(glob("../models/*.class.php") as $filename){
     include_once($filename);
 }
-// include_once("order-api.php");
 
 foreach(glob("*-api.php") as $filename){
     include_once($filename);

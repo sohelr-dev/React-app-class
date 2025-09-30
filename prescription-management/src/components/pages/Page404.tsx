@@ -8,7 +8,9 @@ function Page404() {
           404 !
         </div>
         <h1 className="text-danger">Page Not Found !</h1>
+
       </div>
+   
     </div>
     </>
   )

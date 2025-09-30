@@ -3,19 +3,38 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.tsx'
 import Users from './components/pages/Users.tsx';
-import Dashboard from './components/pages/Dashboard.tsx';
+// import Dashboard from './components/pages/Dashboard.tsx';
+import CreatePrescription from './components/pages/doctors/CreatePrescriptions.tsx';
+import DoctorsDashboard from './components/pages/doctors/DoctorsDashboard.tsx';
 import Page404 from './components/pages/Page404.tsx';
-import Login from './components/pages/login.tsx';
+import PatientsList from './components/pages/doctors/patients/PatientsList.tsx';
+import MedicalHistory from './components/pages/doctors/patients/MedicalHistory.tsx';
+import TodayAppointment from './components/pages/doctors/appointments/TodayAppointment.tsx';
+import Upcoming from './components/pages/doctors/appointments/Upcoming.tsx';
+import DoctorAppointmentHistory from './components/pages/doctors/appointments/DoctorAppointmentHistory.tsx';
+import DoctorMedicine from './components/pages/doctors/DoctorMedicine.tsx';
+import Tests from './components/pages/doctors/Tests.tsx';
+import DoctorPrescriptionHistory from './components/pages/doctors/DoctorPrescriptionHistory.tsx';
+import CreatePatients from './components/pages/doctors/patients/CreatePatients.tsx';
 
 const AppRouter =createBrowserRouter([
   {path:"/" ,element:<App/>,
     children:[
-      {path:"/dashboard" ,element: <Dashboard/>},
-      {path:"/users" ,element: <Users/>}
+      {path:"/dashboard" ,element: <DoctorsDashboard/>},
+      {path:"/users" ,element: <Users/>},
+      {path:"/createPrescription" ,element: <CreatePrescription/>},
+      {path:"/patients" ,element: <PatientsList/>},
+      {path:"/patients/create-patients" ,element: <CreatePatients/>},
+      {path:"/patients/patient-medical-history" ,element: <MedicalHistory/>},
+      {path:"/appointments/today" ,element: <TodayAppointment/>},
+      {path:"/appointments/upcoming" ,element: <Upcoming/>},
+      {path:"/appointments/history" ,element: <DoctorAppointmentHistory/>},
+      {path:"/medicines" ,element: <DoctorMedicine/>},
+      {path:"/tests" ,element: <Tests/>},
+      {path:"/prescription-history" ,element: <DoctorPrescriptionHistory/>},
     ]
   },
-  {path:'/login' ,element :<Login/>},
-  {path:'/*' ,element :<Page404/>}
+  {path:'/*' ,element: <Page404/>}
 ])
 
 createRoot(document.getElementById('root')!).render(
