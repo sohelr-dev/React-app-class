@@ -1,45 +1,45 @@
-// import axios from "axios";
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 import api from "../../../config";
 
-
-//onno kothau access korte export korta hobe 
-export interface role {
+interface userColumnType {
      id: number,
-     name: string
+     role_id: number,
+     name: string,
+     email: string,
+     address: string,
+     roleName: string,
+
 }
-function ManageRoles() {
-     const [roles, setRoles] = useState<role[]>([]);
+
+function ManageUsers() {
+     const [user, setUser] = useState<userColumnType[]>([]);
      useEffect(() => {
-          document.title = "Manage Roles"
-          getRoles();
+          document.title = "Manage Users";
+          getuser();
      }, []);
-     useEffect(()=>{
+     useEffect(() => {
 
-     },[roles]);
+     }, [user])
 
-
-     const getRoles = (() => {
-          // axios.get(`http://localhost/php-react-api/api/roles`)
-          api.get("roles")
-               .then((response) => {
-                    console.log(response);
-                    setRoles(response.data);
+     const getuser = (() => {
+          api.get("users")
+               .then((res) => {
+                    console.log(res.data);
+                    setUser(res.data);
                })
                .catch((error) => {
                     console.log(error);
                })
      })
 
-     
 
 
      return (
           <>
                <div className="container-xxl flex-grow-1 container-p-y">
-                    <h4 className="fw-bold py-3 mb-4"><span className="text-muted fw-light">Roles /</span> Manage</h4>
-                    <Link to='/role-create' className="btn btn-success mb-2">Add New</Link>
+                    <h4 className="fw-bold py-3 mb-4"><span className="text-muted fw-light">Users /</span> Manage</h4>
+                    <Link to='/create-user' className="btn btn-success mb-2">Add New</Link>
                     <div className="card">
                          <div className="table-responsive">
                               <table className="table">
@@ -47,26 +47,32 @@ function ManageRoles() {
                                         <tr>
                                              <th>#ID</th>
                                              <th>Name</th>
+                                             <th>Email</th>
+                                             <th>Role</th>
+                                             <th>Address</th>
 
                                              <th>Action</th>
                                         </tr>
                                    </thead>
                                    <tbody>
                                         {
-                                             roles.map((item) => {
+                                             user.map((item) => {
                                                   return (
                                                        <tr key={item.id}>
                                                             <td>{item.id}</td>
                                                             <td>{item.name}</td>
+                                                            <td>{item.email}</td>
+                                                            <td>{item.roleName}</td>
+                                                            <td>{item.address}</td>
                                                             <th>
                                                                  <div className="d-flex gap-2">
-                                                                      <Link to={`/role/${item.id}`} type="button" className="btn btn-icon btn-outline-primary">
+                                                                      <Link to={`/user/${item.id}`} type="button" className="btn btn-icon btn-outline-info">
                                                                            <span className="tf-icons bx bx-detail"></span>
                                                                       </Link>
-                                                                      <Link to={`/role/edit/${item.id}`} type="button" className="btn btn-icon btn-outline-primary">
+                                                                      <Link to={`/user/edit/${item.id}`} type="button" className="btn btn-icon btn-outline-primary">
                                                                            <span className="tf-icons bx bx-edit"></span>
                                                                       </Link>
-                                                                      <button type="button" className="btn btn-icon btn-outline-primary">
+                                                                      <button type="button" className="btn btn-icon btn-outline-danger">
                                                                            <span className="tf-icons bx bx-trash"></span>
                                                                       </button>
                                                                  </div>
@@ -76,14 +82,14 @@ function ManageRoles() {
                                              })
                                         }
 
+
                                    </tbody>
                               </table>
                          </div>
                     </div>
-
                </div>
           </>
      )
 }
 
-export default ManageRoles
+export default ManageUsers
