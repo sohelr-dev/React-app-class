@@ -14,6 +14,7 @@ interface userColumnType {
 
 function ManageUsers() {
      const [user, setUser] = useState<userColumnType[]>([]);
+     const [userId, setUserId] = useState<number>(0);
      useEffect(() => {
           document.title = "Manage Users";
           getuser();
@@ -32,6 +33,30 @@ function ManageUsers() {
                     console.log(error);
                })
      })
+
+     function handleModal(id: number) {
+          console.log(id +"confirm Delete");
+          setUserId(id);
+     }
+      
+     function handleDelete(id:any){
+          // alert(id+ "Are you sure");
+          //another method 
+          //api.delete(`delete-user`,{
+          // params:{
+          //   id: id
+          //   }
+          // });
+          api.delete(`delete-user?id=${id}`)
+          .then((res)=>{
+               console.log(res);
+               getuser();
+          })
+          .catch((error)=>{
+               console.log(error);
+          })
+
+     }
 
 
 
@@ -72,7 +97,7 @@ function ManageUsers() {
                                                                       <Link to={`/user/edit/${item.id}`} type="button" className="btn btn-icon btn-outline-primary">
                                                                            <span className="tf-icons bx bx-edit"></span>
                                                                       </Link>
-                                                                      <button type="button" className="btn btn-icon btn-outline-danger">
+                                                                      <button type="button" className="btn btn-icon btn-outline-danger" onClick={() => handleModal(item.id)} data-bs-toggle="modal" data-bs-target="#modalDelete">
                                                                            <span className="tf-icons bx bx-trash"></span>
                                                                       </button>
                                                                  </div>
@@ -85,6 +110,23 @@ function ManageUsers() {
 
                                    </tbody>
                               </table>
+                         </div>
+                    </div>
+               </div>
+               <div className="modal" id="modalDelete" tab-index="-1">
+                    <div className="modal-dialog">
+                         <div className="modal-content">
+                              <div className="modal-body text-center fs-1">
+                                   <span className="tf-icons bx bx-trash"></span>
+                                   {/* <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
+                              </div>
+                              <div className="modal-body text-center">
+                                   <p>Are you Want to delete This Item {userId}</p>
+                              </div>
+                              <div className="modal-footer">
+                                   <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                   <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={()=>handleDelete(userId)}>Delete</button>
+                              </div>
                          </div>
                     </div>
                </div>

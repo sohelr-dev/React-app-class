@@ -97,7 +97,7 @@ function CreateUser() {
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Role</label>
-                  <select name="role_id" className="form-select" onChange={(e) => setUser({ ...user, role_id: parseInt(e.target.value) })}>
+                  <select name="role_id" className="form-select" value={user.role_id} onChange={(e) => setUser({ ...user, role_id: parseInt(e.target.value) })}>
                     <option value={0} disabled className="text-center">------Select One----</option>
                     {
                       roles.map((item) =>
@@ -114,8 +114,6 @@ function CreateUser() {
                     }
                   }} />
                 </div>
-                
-
                 <button type="submit" className="btn btn-outline-primary">Submit</button>
               </form>
             </div>
