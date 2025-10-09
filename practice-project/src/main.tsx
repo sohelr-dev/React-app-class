@@ -18,6 +18,7 @@ import ManageRoles from './components/pages/roles/ManageRoles.tsx';
 import CreateRoles from './components/pages/roles/CreateRoles.tsx';
 import ManageUsers from './components/pages/users/ManageUsers.tsx';
 import CreateUser from './components/pages/users/CreateUser.tsx';
+import Login from './components/pages/Login.tsx';
 
 const PractiseApp = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const PractiseApp = createBrowserRouter([
     ]
   },
   {path: '/pos', element:<h1>Pos</h1>},
-  {path: '/login', element:<h1>Login</h1>},
+  {path: '/login', element:<Login/>},
   { path: '*', element: <h1 className='text-danger text-danger'>Not Fund</h1> },
 ])
 

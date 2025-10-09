@@ -79,4 +79,14 @@ class Users {
           return "Delete failed: " . $db->error;
         }
     }
+    public static function login($email,$password) {
+        global $db;
+        $sql = "SELECT u.email,u.password,u.name FROM ecom_users u  WHERE u.email = '$email' and u.password='$password'";
+        $res=$db->query($sql);
+        if($res){
+          return $res->fetch_assoc();
+        }else{
+          return $db->error;
+        }
+    }
 }

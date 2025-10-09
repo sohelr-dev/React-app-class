@@ -1,7 +1,7 @@
 <?php
 // echo "API Working <br>";
 require_once('../config/db.php');
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:5174");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 // require_once('../config/base.php');
@@ -17,6 +17,12 @@ include_once("../helper/jwt.php");
 foreach(glob("*-api.php") as $filename){
     include_once($filename);
 }
+
+if($_SERVER['REQUEST_METHOD'] =="OPTIONS"){
+    http_response_code(200);
+    exit();
+}
+
 $request =$_SERVER['REQUEST_METHOD'];
 $endpoint =$_GET['method'] ?? null;
 if(!$endpoint){
@@ -25,9 +31,12 @@ if(!$endpoint){
 }
 
 if($endpoint=='login' && $request =='POST'){
-    echo "Login Api Request";
+    $data =json_decode(file_get_contents("php://input"),true);
+    // echo json_encode( $data);
+    // echo "Login Api Request";
+    login($data);
     
-}elseif($endpoint =='token' && $request == 'POST'){
+}elseif($endpoint =='token' ){
     $data =[
                 "name"=>"sohel",
                 "email"=>"sohel@gmail.com",
@@ -51,7 +60,7 @@ if($endpoint=='login' && $request =='POST'){
         echo json_encode(['error'=>"Invalid or expired token"]);
         exit;
 
-    }
+    }}
 
 
     //page access for token 
@@ -92,16 +101,12 @@ if($endpoint=='login' && $request =='POST'){
             $auth_header =$header['Authorization'] ?? '';
             $jwt = explode(' ',$auth_header);
            echo json_encode(validateJWT($jwt[1]));
-        }
-
-
-
-        else{
+        }else{
             echo "<h1>THIS URL '" . __DIR__. "\ $method' NOT Found !</h1>"  ;
             
         }
         
-}
+}else{
     echo "others api request";
 }
 
