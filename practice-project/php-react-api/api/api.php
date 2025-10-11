@@ -1,18 +1,18 @@
 <?php
 // echo "API Working <br>";
 require_once('../config/db.php');
-header("Access-Control-Allow-Origin: http://localhost:5174");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 // require_once('../config/base.php');
 // require_once('../models/products.class.php');
 // include_once('product-api.php');
+include_once("../helper/jwt.php");
 foreach(glob("../models/*.class.php") as $filename){
     include_once($filename);
 }
 // include_once("order-api.php");
 include_once("../helper/img-upload-helper.php");
-include_once("../helper/jwt.php");
 
 foreach(glob("*-api.php") as $filename){
     include_once($filename);
@@ -35,6 +35,7 @@ if($endpoint=='login' && $request =='POST'){
     // echo json_encode( $data);
     // echo "Login Api Request";
     login($data);
+    exit();
     
 }elseif($endpoint =='token' ){
     $data =[
