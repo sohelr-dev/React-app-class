@@ -8,8 +8,21 @@ const api =axios.create({
      baseURL:baseApiUrl,
      headers:{
           "Content-Type": "application/json",
-          "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic29oZWwiLCJlbWFpbCI6InNvaGVsQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1OTk5MDc2NCwiZXhwIjoxNzYwNTk1NTY0fQ.vGWTzt_0h2iqkuGuNBMygWx37qkjcoHyQVU6y0Am7qQ`
+          // "Authorization": `Bearer ${localStorage.getItem("bearer_token")}`
      }
 });
 
-export default api
+// add interceptors to always attach the latest token 
+
+api.interceptors.request.use(
+     (config) => {
+     const token = localStorage.getItem("bearer_token");
+     if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+     }
+     return config;
+     },
+     (error)=>Promise.reject(error)
+);
+
+export default api;

@@ -19,10 +19,12 @@ import CreateRoles from './components/pages/roles/CreateRoles.tsx';
 import ManageUsers from './components/pages/users/ManageUsers.tsx';
 import CreateUser from './components/pages/users/CreateUser.tsx';
 import Login from './components/pages/Login.tsx';
+import { redirectIfAuthenticated, requireAuth } from './utils/auth.ts';
+
 
 const PractiseApp = createBrowserRouter([
   {
-    path: '/', element: <Layout />,
+    path: '/', element: <Layout />,loader: requireAuth,
     children: [
       {index: true, element:<Dashboard/>},
       {path: '/dashboard', element:<Dashboard/>},
@@ -39,7 +41,7 @@ const PractiseApp = createBrowserRouter([
     ]
   },
   {path: '/pos', element:<h1>Pos</h1>},
-  {path: '/login', element:<Login/>},
+  {path: '/login', element:<Login/>,loader:redirectIfAuthenticated},
   { path: '*', element: <h1 className='text-danger text-danger'>Not Fund</h1> },
 ])
 

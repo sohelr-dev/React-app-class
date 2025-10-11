@@ -1,5 +1,13 @@
+import { useNavigate } from "react-router-dom"
 
 function Navbar() {
+  const navigate = useNavigate();
+  const handleLogOut=()=>{
+    localStorage.removeItem("bearer_token");
+    navigate('/login');
+
+
+  }
 
   return (
     <>
@@ -90,10 +98,8 @@ function Navbar() {
                   <div className="dropdown-divider"></div>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="auth-login-basic.html">
                     <i className="bx bx-power-off me-2"></i>
-                    <span className="align-middle">Log Out</span>
-                  </a>
+                    <button className="align-middle btn " onClick={handleLogOut}>Log Out</button>
                 </li>
               </ul>
             </li>

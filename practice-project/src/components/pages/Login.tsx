@@ -2,11 +2,13 @@ import React from "react";
 import "../../assets/page-auth.css";
 import { useState } from "react";
 import api from "../../config";
+import { useNavigate } from "react-router-dom";
 interface User{
      email:string,
      password:string,
 }
 function Login() {
+     const navigate = useNavigate();
      const [user,setUser]=useState<User>({
           email:"",
           password:"",
@@ -17,14 +19,19 @@ function Login() {
           // alert("submitt Successfull" + JSON.stringify(user));
           api.post("login",user)
           .then((response)=>{
-               // console.log(response)
+               // console.log(response);
                // alert(response);
-               if(response.data ===null){
-                    alert('something wrong');
+               if(response.data.error){
+                    alert(response.data.error);
                }else{
-                    
                     console.log(response.data);
+                    alert(response.data.success);
+                    localStorage.setItem("bearer_token" ,response.data.token);
+                    navigate("/dashboard");
+
                }
+              
+              
           })
           .catch((error)=>{
                // alert(error);
